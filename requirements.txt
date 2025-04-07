@@ -17,7 +17,6 @@ busio
 numpy
 
 
-
 """
 Instalar librerias, ejecutar el siguiente commando
 
