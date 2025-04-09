@@ -15,5 +15,3 @@ Datos de red (si aplica)
 Variables globales
 
 """
-
-#Esto es una prueba desde la compu de apstrana
