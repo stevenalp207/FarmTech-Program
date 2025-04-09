@@ -17,8 +17,3 @@ busio
 numpy
 
 
-"""
-Instalar librerias, ejecutar el siguiente commando
-
-pip install -r requirements.txt
-"""
