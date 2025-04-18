@@ -10,13 +10,12 @@ adafruit-circuitpython-motorkit
 adafruit-circuitpython-gps
 
 # Hardware communication
-RPi.GPIO>=0.7.0
+#RPi.GPIO>=0.7.0
+Adafruit-Blinka
 smbus2
-board
-busio
-pandas
 
 # General purpose
 numpy
+pandas
 
 
