@@ -10,16 +10,12 @@ def obtener_datos_climaticos(latitude, longitude, start_date, end_date,
         "PRECTOTCORR",     # Precipitación total corregida
         "RH2M",            # Humedad relativa a 2 m
         "WS10M",           # Velocidad del viento a 10 m
-        "ALLSKY_SFC_SW_DWN",  # Radiación solar en superficie cielo despejado
-        "CLRSKY_SFC_SW_DWN",  # Radiación solar en superficie cielo claro
         "ALLSKY_SFC_LW_DWN",  # Radiación infrarroja descendente
         "WS10M_MAX",       # Velocidad máxima del viento a 10 m
         "WS10M_MIN",       # Velocidad mínima del viento a 10 m
         "TS",              # Temperatura de la superficie
         "T2MDEW",          # Temperatura del punto de rocío a 2 m
         "T2MWET",          # Temperatura húmeda del aire a 2 m
-        "T2M_RANGE",       # Rango de temperatura diaria (Tmax - Tmin)
-        "QV2M",            # Contenido de vapor de agua a 2 m
         "PS",              # Presión de superficie
     ]):
     url = "https://power.larc.nasa.gov/api/temporal/daily/point"
@@ -61,7 +57,7 @@ def obtener_datos_climaticos(latitude, longitude, start_date, end_date,
         return None
 
 # Calcular la fecha de ayer
-fecha_ayer = (datetime.now() - timedelta(7)).strftime("%Y%m%d")
+fecha_ayer = (datetime.now() - timedelta(1)).strftime("%Y%m%d")
 
 # Parámetros de ubicación (puedes cambiarlos a la ubicación deseada)
 latitude = 9.8967914
