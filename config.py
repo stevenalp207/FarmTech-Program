@@ -1,20 +1,17 @@
+# config.py
+
 """
 Función: Configuraciones centralizadas del sistema.
 Contiene:
 
 Direcciones I2C de los sensores
-
 Umbrales de temperatura, humedad, CO₂
-
 Pines usados
-
 Velocidad de motores
-
 Datos de red (si aplica)
-
 Variables globales
-
 """
+
 # -----------------------------
 # 🧪 I2C Addresses
 # -----------------------------
@@ -77,3 +74,10 @@ estado_robot = {
 # -----------------------------
 LOG_PATH = "/home/pi/farmtech/logs/"
 DATOS_PATH = "/home/pi/farmtech/data/"
+
+# -----------------------------
+# 🧩 Bus I2C
+# -----------------------------
+import board
+import busio
+i2c = busio.I2C(board.SCL, board.SDA)
