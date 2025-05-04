@@ -1,5 +1,3 @@
-# main.py
-
 from sensors.bmp390 import init_bmp390, leer_bmp390
 from sensors.ltr390 import init_ltr390, leer_ltr390
 from sensors.scd30 import init_scd30, leer_scd30
