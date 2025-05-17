@@ -1,10 +1,23 @@
-""""
-Función: Manejo de logs.
-Contiene:
+import logging
+from datetime import datetime
+import os
 
-Función get_logger() que configura e imprime mensajes de depuración
+# Crear carpeta logs si no existe
+log_folder = "logs"
+if not os.path.exists(log_folder):
+    os.makedirs(log_folder)
 
-Niveles de log (INFO, WARNING, ERROR) 
+# Nombre del archivo de log con fecha
+log_filename = os.path.join(log_folder, datetime.now().strftime("farmtech_%Y-%m-%d.log"))
 
-Formato de impresión con hora y nivel
-"""
+# Configuración del logger
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(message)s",
+    handlers=[
+        logging.FileHandler(log_filename),
+        logging.StreamHandler()  # Muestra también en la terminal
+    ]
+)
+
+logger = logging.getLogger("farmtech")

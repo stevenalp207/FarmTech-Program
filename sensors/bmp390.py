@@ -12,6 +12,8 @@ import time
 import adafruit_bmp3xx
 from config import i2c
 
+
+
 # -----------------------------
 # 🧭 Inicialización del sensor
 # -----------------------------
