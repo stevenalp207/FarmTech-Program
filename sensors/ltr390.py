@@ -34,7 +34,10 @@ def leer_ltr390(sensor):
     try:
         luz_visible = sensor.light
         indice_uv = sensor.uvi
-        return luz_visible, indice_uv
+        raw_UV = sensor.uvs
+        lux_light = sensor.lux
+        
+        return luz_visible, indice_uv, raw_UV, lux_light
     except Exception as e:
         print(f"[LTR390] Error al leer datos: {e}")
         return None, None

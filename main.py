@@ -1,17 +1,21 @@
-# main.py
+import time
+import json
+from datetime import datetime
+
+# Sensores
 from sensors.bmp390 import init_bmp390, leer_bmp390
 from sensors.ltr390 import init_ltr390, leer_ltr390
 from sensors.scd30 import init_scd30, leer_scd30
 
+# GPS
 from gps.gps import init_gps, leer_lat_lon
+from gps.satelite import obtener_datos_de_ayer
+
+# Motores
 from motors.stepper import move_stepper_motor_continuous
-import time
 
-from gps.satelite import obtener_datos_de_ayer 
-
+# Utilidades
 from utils.logger import logger
-
-
 
 def main():
     # Inicialización
@@ -39,9 +43,9 @@ def main():
             logger.error("Error al leer el sensor BMP390")
 
         # Leer luz y UV LTR390
-        luz, uv = leer_ltr390(ltr_sensor)
-        if luz is not None and uv is not None:
-            print(f"LTR390 -> Luz visible: {luz:.2f} lux | Índice UV: {uv:.2f}")
+        luz, uv, uvs, lux = leer_ltr390(ltr_sensor)
+        if luz is not None and uv is not None and uvs is not None and lux is not None:
+            print(f"LTR390 -> Luz cruda: {luz:.2f} | UV crudo: {uvs:.2f} | Lux: {lux:.2f} lx | Índice UV: {uv:.2f}")
             logger.info("Lectura LTR390")
         else:
             print("LTR390 -> Error de lectura")
@@ -76,6 +80,36 @@ def main():
             else:
                 print("[NASA] No se pudieron obtener datos del clima.")
                 logger.error("Error al leer datos climáticos NASA")
+
+        datos_sensores = {
+            "timestamp": datetime.utcnow().isoformat(),  # Fecha y hora en formato ISO
+            "sensor_bmp390": {
+                "presion_hPa": presion,
+                "temperatura_a": temperatura_bmp
+            },
+            "sensor_ltr390": {
+                "luz_cruda": luz,
+                "uv_crudo": uvs,
+                "lux": lux,
+                "indice_uv": uv
+            },
+            "sensor_scd30": {
+                "co2_ppm": co2,
+                "temperatura_b": temperatura_scd,
+                "humedad_pct": humedad
+            },
+            "gps": {
+                "latitud": datos['lat'] if datos else None,
+                "longitud": datos['lon'] if datos else None
+            },
+            "clima_satelital": clima if clima else {}
+        }
+
+        # Convertir a JSON
+        json_datos = json.dumps(datos_sensores, indent=4)
+        print("[JSON] Datos para envío:")
+        logger.info("Datos JSON preparados para envío")
+        print(json_datos)
 
         print("-" * 40)
         time.sleep(1)
