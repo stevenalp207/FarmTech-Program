@@ -15,8 +15,7 @@ Adafruit-Blinka
 smbus2
 
 # General purpose
-numpy
-pandas
 requests
-
-
+pygame
+datetime
+threading
