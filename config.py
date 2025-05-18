@@ -1,17 +1,3 @@
-# config.py
-
-"""
-Función: Configuraciones centralizadas del sistema.
-Contiene:
-
-Direcciones I2C de los sensores
-Umbrales de temperatura, humedad, CO₂
-Pines usados
-Velocidad de motores
-Datos de red (si aplica)
-Variables globales
-"""
-
 # -----------------------------
 # 🧪 I2C Addresses
 # -----------------------------
@@ -22,14 +8,6 @@ I2C_ADDR_LTR390 = 0x53  # Sensor de luz UV
 I2C_ADDR_GPIO_EXPANDER = 0x20
 I2C_ADDR_MOTOR_BONNET = 0x60  # Dirección del motor bonnet
 
-# -----------------------------
-# 🌡 Umbrales (pueden ajustarse)
-# -----------------------------
-TEMP_MIN_C = 10.0
-TEMP_MAX_C = 35.0
-HUMEDAD_MIN = 30.0       # %
-HUMEDAD_MAX = 80.0       # %
-CO2_MAX_PPM = 1000       # partes por millón
 
 # -----------------------------
 # ⚙️ Pines y hardware

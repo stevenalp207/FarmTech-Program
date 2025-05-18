@@ -3,6 +3,7 @@
 import time
 import json
 from datetime import datetime
+import threading
 
 # Sensores
 from sensors.bmp390 import init_bmp390, leer_bmp390
@@ -14,11 +15,14 @@ from gps.gps import init_gps, leer_lat_lon
 from gps.satelite import obtener_datos_de_ayer
 
 # Motores
-from motors.stepper import move_forward, move_backward, move_left, move_right
+import motors.stepper as stepper
+
+#Control remoto
+from motors.control_remoto import inicializar_joystick, leer_controles
 
 # Utilidades
 from utils.logger import logger
-import threading
+
 
 
 def inicializar_sensores():
@@ -92,10 +96,48 @@ def leer_datos_gps_y_clima(gps):
 
     return datos_gps, clima
 
+def control_remoto():
+    joystick = inicializar_joystick()
+    if joystick is None:
+        print("[PS4] No se encontró joystick. Control remoto desactivado.")
+        logger.warning("No se encontró joystick. Control remoto desactivado.")
+        return
+    
+    print("[PS4] Control remoto iniciado con mando PS4...")
+    logger.info("Control remoto iniciado con mando PS4")
+    
+    while True:
+        controles = leer_controles(joystick)
+
+        if controles["L1"][1]:  # L1 presionado
+            print("[PS4] IZQUIERDA")
+            logger.info("Movimiento a la izquierda")
+            stepper.move_left()
+
+        if controles["R1"][1]:  # R1 presionado
+            print("[PS4] DERECHA")
+            logger.info("Movimiento a la derecha")
+            stepper.move_right()
+
+        if controles["L2"][1]:  # L2 presionado
+            print("[PS4] ATRÁS")
+            logger.info("Movimiento hacia atrás")
+            stepper.move_backward()
+
+        if controles["R2"][1]:  # R2 presionado
+            print("[PS4] ADELANTE")
+            logger.info("Movimiento hacia adelante")
+            stepper.move_forward()
+
+        time.sleep(0.1)  # Pequeña pausa para no saturar el CPU
 
 def main():
     bmp_sensor, ltr_sensor, scd_sensor, gps = inicializar_sensores()
     
+    # Iniciar hilo para control remoto
+    hilo_control = threading.Thread(target=control_remoto, daemon=True)
+    hilo_control.start()
+
     print("\n------------------[ INICIO DE LECTURAS ]------------------")
 
     while True:
