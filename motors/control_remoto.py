@@ -5,11 +5,11 @@ def inicializar_joystick():
     pygame.init()
     pygame.joystick.init()
     if pygame.joystick.get_count() == 0:
-        print("No se detectó ningún joystick.")
+        print("[PS4] No se detectó ningún joystick.")
         return None
     joystick = pygame.joystick.Joystick(0)
     joystick.init()
-    print(f"Joystick detectado: {joystick.get_name()}")
+    print(f"[PS4] Joystick detectado: {joystick.get_name()}")
     return joystick
 
 def leer_controles(joystick):
