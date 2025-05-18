@@ -11,7 +11,7 @@ from sensors.scd30 import init_scd30, leer_scd30
 
 # GPS
 from gps.gps import init_gps, leer_lat_lon
-from gps.satelite import obtener_datos_de_ayer
+from gps.satelite import obtener_datos_consulta
 
 # Motores
 from motors.stepper import move_forward, move_backward, move_left, move_right
@@ -81,7 +81,7 @@ def leer_datos_gps_y_clima(gps):
 
     # Consulta clima satelital NASA
     print("[NASA] Consultando datos climáticos del satélite...")
-    clima = obtener_datos_de_ayer(lat, lon)
+    clima = obtener_datos_consulta(lat, lon)
 
     if clima:
         logger.info("Lectura datos climáticos NASA")

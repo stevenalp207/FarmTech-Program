@@ -52,6 +52,6 @@ def obtener_datos_climaticos(latitude, longitude, start_date, end_date,
         return None
 
 # Llamada a la función para obtener los datos con la fecha de ayer
-def obtener_datos_de_ayer(lat, lon):
+def obtener_datos_consulta(lat, lon):
     fecha_ayer = (datetime.now() - timedelta(5)).strftime("%Y%m%d")
     return obtener_datos_climaticos(lat, lon, fecha_ayer, fecha_ayer)
