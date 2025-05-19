@@ -4,19 +4,15 @@ from datetime import datetime, timedelta
 
 def obtener_datos_climaticos(latitude, longitude, start_date, end_date,
     parameters=[
-        "T2M",             # Temperatura media del aire a 2 m
-        "T2M_MAX",         # Temperatura máxima del aire a 2 m
-        "T2M_MIN",         # Temperatura mínima del aire a 2 m
-        "PRECTOTCORR",     # Precipitación total corregida
-        "RH2M",            # Humedad relativa a 2 m
-        "WS10M",           # Velocidad del viento a 10 m
-        "ALLSKY_SFC_LW_DWN",  # Radiación infrarroja descendente
-        "WS10M_MAX",       # Velocidad máxima del viento a 10 m
-        "WS10M_MIN",       # Velocidad mínima del viento a 10 m
-        "TS",              # Temperatura de la superficie
-        "T2MDEW",          # Temperatura del punto de rocío a 2 m
-        "T2MWET",          # Temperatura húmeda del aire a 2 m
-        "PS",              # Presión de superficie
+    "T2M", "T2M_MAX", "T2M_MIN", "T2M_RANGE",  # Temperaturas
+    "PRECTOTCORR", "RH2M", "QV2M",            # Humedad y precipitación
+    "WS10M", "WS10M_MAX", "WS10M_MIN",        # Viento
+    "T2MDEW", "T2MWET",                       # Punto de rocío y temp húmeda
+    "TS",                                     # Temp. de la superficie
+    "ALLSKY_SFC_LW_DWN", "ALLSKY_SFC_SW_DWN", # Radiación total
+    "CLRSKY_SFC_SW_DWN", "ALLSKY_KT",         # Radiación bajo cielo despejado y claridad
+    "EVLAND",                                   # Evaporación
+    "PS"                                      # Presión
     ]):
     url = "https://power.larc.nasa.gov/api/temporal/daily/point"
     params = {
@@ -57,7 +53,7 @@ def obtener_datos_climaticos(latitude, longitude, start_date, end_date,
         return None
 
 # Calcular la fecha de ayer
-fecha_ayer = (datetime.now() - timedelta(1)).strftime("%Y%m%d")
+fecha_ayer = (datetime.now() - timedelta(5)).strftime("%Y%m%d")
 
 # Parámetros de ubicación (puedes cambiarlos a la ubicación deseada)
 latitude = 9.8967914

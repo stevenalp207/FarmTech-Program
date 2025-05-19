@@ -128,6 +128,10 @@ def control_remoto():
             print("[PS4] ADELANTE")
             logger.info("Movimiento hacia adelante")
             stepper.move_forward()
+        else:
+            print("[PS4] PARAR")
+            logger.info("Movimiento detenido")
+            stepper.stop_motor() 
 
         time.sleep(0.1)  # Pequeña pausa para no saturar el CPU
 
@@ -174,7 +178,6 @@ def main():
 
         print("-" * 60)
         time.sleep(1)
-
 
 if __name__ == "__main__":
     main()

@@ -10,7 +10,7 @@ def obtener_datos_climaticos(latitude, longitude, start_date, end_date,
     "TS",                                     # Temp. de la superficie
     "ALLSKY_SFC_LW_DWN", "ALLSKY_SFC_SW_DWN", # Radiación total
     "CLRSKY_SFC_SW_DWN", "ALLSKY_KT",         # Radiación bajo cielo despejado y claridad
-    "EVAP",                                   # Evaporación
+    "EVLAND",                                   # Evaporación
     "PS"                                      # Presión
     ]):
     url = "https://power.larc.nasa.gov/api/temporal/daily/point"
