@@ -38,7 +38,12 @@ def obtener_datos_climaticos(latitude, longitude, start_date, end_date,
 
         # Verificamos si los datos están en el formato esperado
         if "properties" in data and "parameter" in data["properties"]:
-            return data["properties"]["parameter"]
+            parametros = data["properties"]["parameter"]
+            resumen = {
+                parametro: list(valores_por_fecha.values())[0]
+                for parametro, valores_por_fecha in parametros.items()
+            }
+            return resumen
         else:
             print("Error: Los datos no están en el formato esperado.")
             return None
