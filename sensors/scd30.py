@@ -1,11 +1,3 @@
-"""
-Módulo para interactuar con el sensor SCD30 (CO₂, temperatura y humedad).
-
-Funcionalidades:
-- Inicialización del sensor
-- Lectura de datos de CO₂, temperatura y humedad
-"""
-
 import time
 import adafruit_scd30
 from config import i2c
