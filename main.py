@@ -121,8 +121,15 @@ def control_remoto():
         time.sleep(0.1)
 
 def run_webserver():
-    app.run(host='0.0.0.0', port=5000, threaded=True)
+    try:
+        app.run(host='0.0.0.0', port=5000, threaded=True)
+        logger.info("Servidor web iniciado")
+        print("[ERROR] Servidor web iniciado")
 
+    except Exception as e:
+        logger.error(f"Error en el servidor web: {str(e)}")
+        print(f"[ERROR] Servidor web: {str(e)}")
+        
 def main():
     bmp_sensor, ltr_sensor, scd_sensor, gps = inicializar_sensores()
     
