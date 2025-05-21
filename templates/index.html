@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control del Robot</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+        }
+        .control-panel {
+            display: grid;
+            grid-template-areas:
+                ". arriba ."
+                "izquierda stop derecha"
+                ". abajo .";
+            grid-gap: 10px;
+            margin: 30px auto;
+            width: 300px;
+        }
+        button {
+            padding: 15px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #adelante { grid-area: arriba; }
+        #atras { grid-area: abajo; }
+        #izquierda { grid-area: izquierda; }
+        #derecha { grid-area: derecha; }
+        #parar { 
+            grid-area: stop; 
+            background-color: #f44336;
+        }
+        #parar:hover {
+            background-color: #d32f2f;
+        }
+    </style>
+</head>
+<body>
+    <h1>Control del Robot</h1>
+    <form method="POST" action="/mover">
+        <div class="control-panel">
+            <button id="adelante" name="direccion" value="adelante" type="submit">▲ Adelante</button>
+            <button id="atras" name="direccion" value="atras" type="submit">▼ Atrás</button>
+            <button id="izquierda" name="direccion" value="izquierda" type="submit">◄ Izquierda</button>
+            <button id="derecha" name="direccion" value="derecha" type="submit">► Derecha</button>
+            <button id="parar" name="direccion" value="parar" type="submit">Detener</button>
+        </div>
+    </form>
+</body>
+</html>
